@@ -153,7 +153,7 @@
 
     document.getElementById("heroStores").innerHTML = ORDER.filter(function (k) { return k !== "testFlight" && enabled(k); })
       .map(function (k) { return store(k, cfg.links[k].url, t); }).join("");
-    document.getElementById("heroShot").src = "assets/shots/" + lang + "/01_dashboard.webp";
+    document.getElementById("heroShot").src = "assets/img/hero_" + lang + ".webp";
     document.getElementById("heroShot").alt = t.shots[0];
 
     var sec = cfg.sections || {};
