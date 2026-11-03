@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>U-People — تطبيق الموظف</title>
+  <meta name="description" content="U-People: attendance and selfie check-in, shifts, leave, excuses, missions, payslips and notifications — for iPhone, iPad and Android.">
+  <meta property="og:title" content="U-People">
+  <meta property="og:description" content="Attendance, shifts, requests and payslips in one employee app — App Store, Google Play, TestFlight and direct APK.">
+  <meta property="og:image" content="https://uiscomp.github.io/upeople-releases/assets/img/social_en.jpg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#06213f">
+  <link rel="icon" type="image/png" href="assets/img/icon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#"><img src="assets/img/icon.png" alt="" width="36" height="36"><span>U-People</span></a>
+      <nav class="nav">
+        <a href="#features" data-i18n="navFeatures"></a>
+        <a href="#screens" data-i18n="navScreens"></a>
+        <a href="#download" data-i18n="navDownload"></a>
+      </nav>
+      <button class="lang" id="lang" type="button" aria-label="Language">EN</button>
+    </div>
+  </header>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="pill"><span class="dot"></span><span data-i18n="heroPill"></span> <span id="ver"></span></span>
+        <h1 data-i18n="heroTitle"></h1>
+        <p class="lead" data-i18n="heroLead"></p>
+        <div class="stores" id="heroStores"></div>
+      </div>
+      <div class="hero-phone"><img id="heroShot" src="assets/shots/ar/01_dashboard.webp" alt="" width="560" height="1214"></div>
+    </div>
+  </section>
+
+  <section class="block" id="features">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="featEyebrow"></div>
+        <h2 data-i18n="featTitle"></h2>
+        <p data-i18n="featLead"></p>
+      </div>
+      <div class="grid" id="featGrid"></div>
+    </div>
+  </section>
+
+  <section class="block screens" id="screens">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="scrEyebrow"></div>
+        <h2 data-i18n="scrTitle"></h2>
+        <p data-i18n="scrLead"></p>
+      </div>
+      <div class="strip" id="strip"></div>
+      <div class="strip-nav">
+        <button class="round" id="prev" type="button" aria-label="Previous">‹</button>
+        <button class="round" id="next" type="button" aria-label="Next">›</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="download">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="dlEyebrow"></div>
+        <h2 data-i18n="dlTitle"></h2>
+        <p data-i18n="dlLead"></p>
+      </div>
+      <div class="dl" id="dlCards"></div>
+    </div>
+  </section>
+
+  <section class="block screens">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow" data-i18n="trustEyebrow"></div>
+        <h2 data-i18n="trustTitle"></h2>
+      </div>
+      <div class="trust" id="trust"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> United Integrated Solutions · U-People</span>
+      <span id="contact"></span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"><img alt=""></div>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

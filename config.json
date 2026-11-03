@@ -1,0 +1,36 @@
+{
+  "version": "5.2.1",
+  "defaultLanguage": "ar",
+  "announcement": {
+    "enabled": false,
+    "ar": "",
+    "en": ""
+  },
+  "links": {
+    "appStore": {
+      "enabled": true,
+      "url": "https://apps.apple.com/app/id6475875100"
+    },
+    "googlePlay": {
+      "enabled": true,
+      "url": "https://play.google.com/store/apps/details?id=com.uis.uismandooob"
+    },
+    "testFlight": {
+      "enabled": true,
+      "url": "https://testflight.apple.com/join/CpDypqE6"
+    },
+    "apk": {
+      "enabled": true,
+      "url": "https://github.com/UisComp/upeople-releases/releases/latest/download/upeople.apk"
+    }
+  },
+  "sections": {
+    "features": true,
+    "screens": true,
+    "apkDetails": true
+  },
+  "contact": {
+    "email": "",
+    "website": ""
+  }
+}

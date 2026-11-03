@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>U-People — Links dashboard</title>
+  <link rel="icon" type="image/png" href="assets/img/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="admin">
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="assets/img/icon.png" alt="" width="36" height="36"><span>U-People · Links dashboard</span></a>
+      <a class="lang" href="./" style="text-decoration:none">View site</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="hint">Edits <code>config.json</code> of the landing page. Preview shows your edits before anything is saved;
+      Publish commits them to <code>UisComp/upeople-releases</code>, and the live page follows within about a minute.</p>
+
+    <div class="card">
+      <h2>Store links</h2>
+      <div id="links"></div>
+    </div>
+
+    <div class="card">
+      <h2>General</h2>
+      <div class="row">
+        <div class="field"><label for="version">Version shown on the page</label><input id="version" type="text" placeholder="5.2.1"></div>
+        <div class="field"><label for="defaultLanguage">Default language</label>
+          <select id="defaultLanguage"><option value="ar">العربية (ar)</option><option value="en">English (en)</option></select></div>
+      </div>
+      <div class="row">
+        <label class="switch"><input type="checkbox" id="sec-features"> Show features</label>
+        <label class="switch"><input type="checkbox" id="sec-screens"> Show screenshots</label>
+        <label class="switch"><input type="checkbox" id="sec-apkDetails"> Show APK version, size and SHA-256</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Announcement banner</h2>
+      <label class="switch" style="margin-bottom:12px"><input type="checkbox" id="ann-enabled"> Show the banner</label>
+      <div class="row">
+        <div class="field"><label for="ann-ar">Arabic text</label><input id="ann-ar" type="text" dir="rtl"></div>
+        <div class="field"><label for="ann-en">English text</label><input id="ann-en" type="text"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Contact (footer)</h2>
+      <div class="row">
+        <div class="field"><label for="email">Support email</label><input id="email" type="email" placeholder="hr@example.com"></div>
+        <div class="field"><label for="website">Website (https://…)</label><input id="website" type="url" placeholder="https://"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Save</h2>
+      <div class="btns">
+        <button class="btn" id="preview" type="button">Preview</button>
+        <button class="btn" id="download" type="button">Download config.json</button>
+        <button class="btn" id="reset" type="button">Reload live config</button>
+      </div>
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0">
+      <div class="field">
+        <label for="token">GitHub token (to publish)</label>
+        <input id="token" type="password" autocomplete="off" placeholder="github_pat_…">
+        <p class="hint">A fine-grained token with <b>Contents: Read and write</b> on <code>UisComp/upeople-releases</code> only.
+          It is sent to api.github.com and nowhere else, and is kept only in this browser tab — never in the page or the repository.</p>
+      </div>
+      <div class="field"><label for="message">Change note</label><input id="message" type="text" placeholder="Update store links"></div>
+      <button class="btn orange" id="publish" type="button">Publish to the live page</button>
+      <div class="status" id="status" role="status"></div>
+    </div>
+  </main>
+
+  <script src="assets/admin.js"></script>
+</body>
+</html>
