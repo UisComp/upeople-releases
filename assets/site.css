@@ -165,8 +165,6 @@ section.block { padding-block: 72px; }
 .dl .card { display: flex; flex-direction: column; gap: 10px; }
 .dl .card .store { align-self: flex-start; margin-top: auto; }
 .tag { align-self: flex-start; display: inline-block; font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
-.meta { font-size: .85rem; color: var(--muted); word-break: break-all; }
-.meta code { font-size: .78rem; }
 
 /* Trust */
 .trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }

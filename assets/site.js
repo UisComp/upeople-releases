@@ -3,7 +3,6 @@
 (function () {
   "use strict";
 
-  var REPO = "UisComp/upeople-releases";
 
   var T = {
     ar: {
@@ -21,10 +20,8 @@
       appStore: "App Store", appStoreSmall: "حمّله من", appStoreBody: "للآيفون والآيباد — الإصدار الرسمي.",
       googlePlay: "Google Play", googlePlaySmall: "احصل عليه من", googlePlayBody: "لأجهزة أندرويد — الإصدار الرسمي مع التحديث التلقائي.",
       testFlight: "TestFlight", testFlightSmall: "النسخة التجريبية", testFlightBody: "جرّب الإصدارات القادمة على الآيفون قبل نشرها، عبر تطبيق TestFlight من Apple.",
-      apk: "APK مباشر", apkSmall: "تحميل", apkBody: "لأجهزة أندرويد بدون متجر Google Play. لا يتحدث تلقائيًا.",
+      apk: "APK مباشر", apkSmall: "تحميل", apkBody: "لأجهزة أندرويد بدون متجر Google Play.",
       tagOfficial: "رسمي", tagBeta: "تجريبي", tagDirect: "مباشر",
-      apkMeta: "الإصدار {v} · {size} · {date}", sha: "بصمة SHA-256:",
-      apkNote: "نسخة المتجر ونسخة الرابط موقّعتان بشكل مختلف، فلا تحدّث إحداهما الأخرى — احذف إحداهما قبل تثبيت الأخرى.",
       contact: "تواصل معنا",
       features: [
         ["checkin", "تسجيل الحضور بلمسة", "حضور وانصراف بصورة سيلفي مع التحقق من الحيوية والموقع، والخادم هو من يتحقق."],
@@ -62,10 +59,8 @@
       appStore: "App Store", appStoreSmall: "Download on the", appStoreBody: "For iPhone and iPad — the official release.",
       googlePlay: "Google Play", googlePlaySmall: "Get it on", googlePlayBody: "For Android — the official release, updated automatically.",
       testFlight: "TestFlight", testFlightSmall: "Beta on", testFlightBody: "Try upcoming iPhone releases before they ship, through Apple's TestFlight app.",
-      apk: "Direct APK", apkSmall: "Download the", apkBody: "For Android devices without Google Play. It does not update itself.",
+      apk: "Direct APK", apkSmall: "Download the", apkBody: "For Android devices without Google Play.",
       tagOfficial: "Official", tagBeta: "Beta", tagDirect: "Direct",
-      apkMeta: "Version {v} · {size} · {date}", sha: "SHA-256:",
-      apkNote: "The store copy and the link copy are signed differently, so neither updates the other — uninstall one before installing the other.",
       contact: "Contact us",
       features: [
         ["checkin", "One-tap check-in", "Check in and out with a selfie, liveness and location — verified by the server, not the phone."],
@@ -123,7 +118,7 @@
   var STORE_TAG = { appStore: "tagOfficial", googlePlay: "tagOfficial", testFlight: "tagBeta", apk: "tagDirect" };
   var ORDER = ["appStore", "googlePlay", "testFlight", "apk"];
 
-  var cfg = null, lang = "ar", apkInfo = null;
+  var cfg = null, lang = "ar";
 
   function store(key, url, t) {
     return '<a class="store ' + STORE_CLASS[key] + '" href="' + esc(url) + '" target="_blank" rel="noopener">' +
@@ -170,39 +165,14 @@
     }).join("");
 
     document.getElementById("dlCards").innerHTML = ORDER.filter(enabled).map(function (k) {
-      var extra = "";
-      if (k === "apk" && sec.apkDetails !== false) {
-        if (apkInfo) {
-          extra = '<p class="meta">' + esc(t.apkMeta.replace("{v}", apkInfo.v).replace("{size}", apkInfo.size).replace("{date}", apkInfo.date)) + "</p>";
-          if (apkInfo.sha) extra += '<p class="meta">' + esc(t.sha) + " <code>" + esc(apkInfo.sha) + "</code></p>";
-        }
-        extra += '<p class="meta">' + esc(t.apkNote) + "</p>";
-      }
       return '<article class="card"><span class="tag">' + esc(t[STORE_TAG[k]]) + "</span><h3>" + esc(t[k]) + "</h3><p>" +
-        esc(t[k + "Body"]) + "</p>" + extra + store(k, cfg.links[k].url, t) + "</article>";
+        esc(t[k + "Body"]) + "</p>" + store(k, cfg.links[k].url, t) + "</article>";
     }).join("");
 
     var c = cfg.contact || {}, parts = [];
     if (c.email) parts.push('<a href="mailto:' + esc(c.email) + '">' + esc(c.email) + "</a>");
     if (safeUrl(c.website)) parts.push('<a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + esc(c.website.replace(/^https:\/\//, "")) + "</a>");
     document.getElementById("contact").innerHTML = parts.length ? esc(t.contact) + ": " + parts.join(" · ") : "";
-  }
-
-  function loadApkInfo() {
-    fetch("https://api.github.com/repos/" + REPO + "/releases/latest").then(function (r) { return r.ok ? r.json() : null; }).then(function (rel) {
-      if (!rel) return;
-      var asset = (rel.assets || []).filter(function (x) { return x.name === "upeople.apk"; })[0];
-      if (!asset) return;
-      var m = /SHA-256[^`]*`([0-9a-f]{64})`/i.exec(rel.body || "");
-      var v = /U-People\s+([0-9.]+\s*\(\d+\))/.exec(rel.name || "");
-      apkInfo = {
-        v: v ? v[1] : rel.tag_name,
-        size: (asset.size / 1048576).toFixed(1) + " MB",
-        date: new Date(rel.published_at).toISOString().slice(0, 10),
-        sha: m ? m[1] : ""
-      };
-      render();
-    }).catch(function () {});
   }
 
   function readDraft() {
@@ -218,7 +188,6 @@
     lang = (q && q[1]) || saved || cfg.defaultLanguage || ((navigator.language || "").indexOf("ar") === 0 ? "ar" : "en");
     if (!T[lang]) lang = "ar";
     render();
-    loadApkInfo();
   }
 
   document.getElementById("lang").addEventListener("click", function () {

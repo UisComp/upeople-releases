@@ -34,7 +34,7 @@
     $("version").value = c.version || "";
     $("defaultLanguage").value = c.defaultLanguage || "ar";
     var s = c.sections || {};
-    ["features", "screens", "apkDetails"].forEach(function (k) { $("sec-" + k).checked = s[k] !== false; });
+    ["features", "screens"].forEach(function (k) { $("sec-" + k).checked = s[k] !== false; });
     var a = c.announcement || {};
     $("ann-enabled").checked = !!a.enabled;
     $("ann-ar").value = a.ar || "";
@@ -54,7 +54,7 @@
       defaultLanguage: $("defaultLanguage").value,
       announcement: { enabled: $("ann-enabled").checked, ar: $("ann-ar").value.trim(), en: $("ann-en").value.trim() },
       links: links,
-      sections: { features: $("sec-features").checked, screens: $("sec-screens").checked, apkDetails: $("sec-apkDetails").checked },
+      sections: { features: $("sec-features").checked, screens: $("sec-screens").checked },
       contact: { email: $("email").value.trim(), website: $("website").value.trim() }
     };
   }

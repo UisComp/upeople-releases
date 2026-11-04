@@ -26,8 +26,7 @@
   },
   "sections": {
     "features": true,
-    "screens": true,
-    "apkDetails": true
+    "screens": true
   },
   "contact": {
     "email": "",
